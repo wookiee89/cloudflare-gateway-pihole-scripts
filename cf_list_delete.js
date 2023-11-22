@@ -27,7 +27,7 @@ import { notifyWebhook } from "./lib/helpers.js";
   }
 
   console.log(
-    `Got ${lists.length} lists, ${cgpsLists.length} of which are CGPS lists that will be deleted.`
+    `Got ${lists.length} lists, ${cgpsLists.length} of which are CGPS lists that will be deleted. ${piholelist.length} of which are PI Hole lists that will be deleted. `
   );
 
   console.log(`Deleting ${cgpsLists.length} lists...`);
@@ -40,8 +40,10 @@ import { notifyWebhook } from "./lib/helpers.js";
   }
 
   await deleteZeroTrustListsOneByOne(cgpsLists);
+
+  console.log(`Deleting ${piholelist.length} lists...`);
+
   await deleteZeroTrustListsOneByOne(piholelist);
 
   await notifyWebhook(`CF List Delete script finished running (${cgpsLists.length} lists)`);
-  await notifyWebhook(`CF List Delete script finished running (${piholelist.length} lists)`);
 })();
