@@ -17,6 +17,7 @@ import { notifyWebhook } from "./lib/helpers.js";
   }
 
   const cgpsLists = lists.filter(({ name }) => name.startsWith("CGPS List"));
+  const piholelist = lists.filter(({ name }) => name.startsWith("pihole_domain"));
 
   if (!cgpsLists.length) {
     console.warn(
@@ -39,6 +40,8 @@ import { notifyWebhook } from "./lib/helpers.js";
   }
 
   await deleteZeroTrustListsOneByOne(cgpsLists);
+  await deleteZeroTrustListsOneByOne(piholelist);
 
   await notifyWebhook(`CF List Delete script finished running (${cgpsLists.length} lists)`);
+  await notifyWebhook(`CF List Delete script finished running (${piholelist.length} lists)`);
 })();
