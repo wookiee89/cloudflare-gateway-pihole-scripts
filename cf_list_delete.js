@@ -26,6 +26,8 @@ import { notifyWebhook } from "./lib/helpers.js";
     return;
   }
 
+  console.log('Hello World!')
+
   console.log(
     `Got ${lists.length} lists, ${cgpsLists.length} of which are CGPS lists that will be deleted. ${piholelist.length} of which are PI Hole lists that will be deleted. `
   );
